@@ -31,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'photogram.urls'
+ROOT_URLCONF = 'pixengine.urls'
 
 TEMPLATES = [
     {
@@ -49,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'photogram.wsgi.application'
+WSGI_APPLICATION = 'pixengine.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
