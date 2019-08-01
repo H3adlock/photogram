@@ -7,6 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/report/', include('report.api.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('gallery/', include('core.urls'), namespace='core')
     path('', home, name='home')
 ]
 
