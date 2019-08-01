@@ -4,6 +4,6 @@ from .views import gallery
 
 app_name = 'core'
 
-urlpattern = [
+urlpatterns = [
     path('', gallery, name='gallery')
 ]

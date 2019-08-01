@@ -6,4 +6,4 @@ def gallery(request):
     context = {
         'images': Image.objects.all()
     }
-    return render(request, 'gallery.html')
+    return render(request, 'gallery.html', context)
