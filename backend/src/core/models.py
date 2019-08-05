@@ -4,14 +4,31 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
-class Image(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.CharField(max_length=100)
-    uploader = models.ForeignKey(
+class Author(models.Model):
+    user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    upload_date = models.DateField(auto_now_add=True)
-    category = models.CharField(max_length=100)
+    profile_picture = models.ImageField()
+
+    def __str__(self):
+        return self.user.username
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.title
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    overview = models.TextField()
+    timestamp = models.DateField(auto_now_add=True)
+    comment_count = models.IntegerField(default=0)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    thumbnail = models.ImageField()
+    categories = models.ManyToManyField(Category)
+    featured = models.BooleanField()
     # slug = models.SlugField(
     #     default='',
     #     editable=False,
@@ -32,24 +49,3 @@ class Image(models.Model):
     #     value = self.title
     #     self.slug = slugify(value, allow_unicode=True)
     #     super().save(*args, **kwargs)
-
-
-class Comment(models.Model):
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, default=None)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    comment_date = models.DateField(auto_now_add=True)
-    comment = models.TextField()
-
-    def __str__(self):
-        return self.comment
-
-
-class Like(models.Model):
-    image_id = models.ForeignKey(Image, on_delete=models.CASCADE, default=None)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    liked_date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Image
+from .models import Post
 
 
 def home(request):
