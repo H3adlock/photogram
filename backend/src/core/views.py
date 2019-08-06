@@ -3,7 +3,13 @@ from .models import Post
 
 
 def home(request):
-    return render(request, 'index.html', {})
+    featured = Post.objects.filter(featured=True)[0:5]
+    latest = Post.objects.order_by('-timestamp')[0:3]
+    context = {
+        'object_list': featured,
+        'latest': latest,
+    }
+    return render(request, 'index.html', context)
 
 
 def post(request):
@@ -12,6 +18,6 @@ def post(request):
 
 def gallery(request):
     context = {
-        'images': Image.objects.all()
+        'posts': Post.objects.all()
     }
     return render(request, 'gallery.html', context)
