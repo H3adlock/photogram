@@ -8,106 +8,63 @@
       <div class="container">
         <div class="row">
           <!-- post -->
+          {% for post in paginated_queryset %}
           <div class="post col-xl-6">
-            <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-1.jpeg' %}" alt="..."
-                  class="img-fluid"></a></div>
+            <!-- <div class="post-thumbnail"><a href="/post"><img src="{{ post.thumbnail.url}}" alt="..."
+                  class="img-fluid"></a></div> -->
+            <div class="item"><a href="{{post.thumbnail.url}}" data-fancybox="gallery" class="image"><img
+                  src="{{post.thumbnail.url}}" alt="..." class="img-fluid">
+                <!-- <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
+                              </div> -->
+              </a>
+            </div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between">
-                <div class="date meta-last">20 May | 2016</div>
-                <div class="category"><a href="#">Business</a></div>
-              </div><a href="post.html">
-                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
+                <!-- <div class="date meta-last">{{ post.timestamp }}</div> -->
+                <div class="category">
+                  {% for cat in post.categories.all %}
+                  <a href="#">{{ cat.title }}</a>
+                  {% endfor %}
+                </div>
+              </div><a href="/post">
+                <h3 class="h4">{{ post.title }}</h3>
               </a>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore.</p>
+              <!-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore.</p> -->
               <footer class="post-footer d-flex align-items-center"><a href="#"
                   class="author d-flex align-items-center flex-wrap">
-                  <div class="avatar"><img src="{% static 'img/avatar-3.jpg' %}" alt="..." class="img-fluid"></div>
-                  <div class="title"><span>John Doe</span></div>
+                  <div class="avatar"><img src="{{post.author.profile_picture.url}}" alt="..." class="img-fluid"></div>
+                  <div class="title"><span>{{ post.author.username }}</span></div>
                 </a>
-                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince }} ago</div>
+                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
               </footer>
             </div>
           </div>
-          <!-- post             -->
-          <div class="post col-xl-6">
-            <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-2.jpg' %}" alt="..."
-                  class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date meta-last">20 May | 2016</div>
-                <div class="category"><a href="#">Business</a></div>
-              </div><a href="post.html">
-                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
-              </a>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore.</p>
-              <div class="post-footer d-flex align-items-center"><a href="#"
-                  class="author d-flex align-items-center flex-wrap">
-                  <div class="avatar"><img src="{% static 'img/avatar-2.jpg' %}" alt="..." class="img-fluid"></div>
-                  <div class="title"><span>John Doe</span></div>
-                </a>
-                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-              </div>
-            </div>
-          </div>
-          <!-- post             -->
-          <div class="post col-xl-6">
-            <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-3.jpeg' %}" alt="..."
-                  class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date meta-last">20 May | 2016</div>
-                <div class="category"><a href="#">Business</a></div>
-              </div><a href="post.html">
-                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
-              </a>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore.</p>
-              <div class="post-footer d-flex align-items-center"><a href="#"
-                  class="author d-flex align-items-center flex-wrap">
-                  <div class="avatar"><img src="{% static 'img/avatar-3.jpg' %}" alt="..." class="img-fluid"></div>
-                  <div class="title"><span>John Doe</span></div>
-                </a>
-                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-              </div>
-            </div>
-          </div>
-          <!-- post -->
-          <div class="post col-xl-6">
-            <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-4.jpeg' %}" alt="..."
-                  class="img-fluid"></a></div>
-            <div class="post-details">
-              <div class="post-meta d-flex justify-content-between">
-                <div class="date meta-last">20 May | 2016</div>
-                <div class="category"><a href="#">Business</a></div>
-              </div><a href="post.html">
-                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
-              </a>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore.</p>
-              <div class="post-footer d-flex align-items-center"><a href="#"
-                  class="author d-flex align-items-center flex-wrap">
-                  <div class="avatar"><img src="{% static 'img/avatar-1.jpg' %}" alt="..." class="img-fluid"></div>
-                  <div class="title"><span>John Doe</span></div>
-                </a>
-                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <!-- Pagination -->
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-template d-flex justify-content-center">
-            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
-            <li class="page-item"><a href="#" class="page-link active">1</a></li>
-            <li class="page-item"><a href="#" class="page-link">2</a></li>
-            <li class="page-item"><a href="#" class="page-link">3</a></li>
-            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+            {% if paginated_queryset.has_previous %}
+            <li class="page-item"><a href="?{{ page_request_var }}={{paginated_queryset.previous_page_number}}"
+                class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+            {% endif %}
+            {% for num_page in num_pages %}
+            {% if num_page == paginated_queryset.number %}
+            <li class="page-item"><a href="?{{ page_request_var }}={{num_page}}"
+                class="page-link active">{{num_page}}</a></li>
+            {% endif %}
+            {% if num_page != paginated_queryset.number %}
+            <li class="page-item"><a href="?{{ page_request_var }}={{num_page}}" class="page-link">{{num_page}}</a></li>
+            {% endif %}
+            {% endfor %}
+            <!-- <li class="page-item"><a href="#" class="page-link">2</a></li>
+            <li class="page-item"><a href="#" class="page-link">3</a></li> -->
+            {% if paginated_queryset.has_next %}
+            <li class="page-item"><a href="?{{ page_request_var }}={{paginated_queryset.next_page_number}}"
+                class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+            {% endif %}
           </ul>
         </nav>
       </div>
@@ -130,37 +87,21 @@
         <header>
           <h3 class="h6">Latest Posts</h3>
         </header>
-        <div class="blog-posts"><a href="#">
+        <div class="blog-posts">
+          {% for post in latest %}
+          <a href="/post">
             <div class="item d-flex align-items-center">
-              <div class="image"><img src="{% static 'img/small-thumbnail-1.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+              <div class="image"><img src="{{post.thumbnail.url}}" alt="..." class="img-fluid"></div>
+              <div class="title"><strong>{{post.title}}</strong>
                 <div class="d-flex align-items-center">
-                  <div class="views"><i class="icon-eye"></i> 500</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
+                  <!-- <div class="views"><i class="icon-eye"></i> 500</div> -->
+                  <div class="comments"><i class="icon-comment"></i>{{post.comment_count}}</div>
                 </div>
               </div>
             </div>
-          </a><a href="#">
-            <div class="item d-flex align-items-center">
-              <div class="image"><img src="{% static 'img/small-thumbnail-2.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                <div class="d-flex align-items-center">
-                  <div class="views"><i class="icon-eye"></i> 500</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </div>
-              </div>
-            </div>
-          </a><a href="#">
-            <div class="item d-flex align-items-center">
-              <div class="image"><img src="{% static 'img/small-thumbnail-3.jpg' %}" alt="..." class="img-fluid"></div>
-              <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                <div class="d-flex align-items-center">
-                  <div class="views"><i class="icon-eye"></i> 500</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </div>
-              </div>
-            </div>
-          </a></div>
+          </a>
+          {% endfor %}
+        </div>
       </div>
       <!-- Widget [Categories Widget]-->
       <div class="widget categories">
