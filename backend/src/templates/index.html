@@ -99,8 +99,8 @@
         <div class="row">
             {% for obj in latest %}
             <div class="post col-md-4">
-                <div class="post-thumbnail"><a href="/post"><img src="{{ obj.thumbnail.url}}" alt="..."
-                            class="img-fluid"></a>
+                <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}"><img src="{{ obj.thumbnail.url}}"
+                            alt="..." class="img-fluid"></a>
                 </div>
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
@@ -110,7 +110,7 @@
                             <a href="#">{{ cat.title }}</a>
                             {% endfor %}
                         </div>
-                    </div><a href="/post">
+                    </div><a href="{{ post.get_absolute_url }}">
                         <h3 class="h4">{{ obj.title }}</h3>
                     </a>
                     <p class="text-muted">{{ obj.overview }}</p>
@@ -142,20 +142,20 @@
     </div>
 </section>
 <!-- Gallery Section-->
-<section class="post no-padding">
+<!-- <section class="post no-padding">
     <div class="row">
         {% for obj in object_list %}
         <div class="mix col-lg-3 col-md-3 col-sm-6">
             <div class="item"><a href="{{obj.thumbnail.url}}" data-fancybox="gallery" class="image"><img
                         src="{{obj.thumbnail.url}}" alt="..." class="img-fluid">
-                    <!-- <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
-                    </div> -->
+                    <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
+                    </div>
                 </a></div>
         </div>
         {% endfor %}
 
     </div>
-</section>
+</section> -->
 <!-- <section class="container">
     <div class="row">
         <div class="mix col-lg-3 col-md-3 col-sm-6">

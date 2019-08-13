@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 class Author(models.Model):
@@ -23,27 +24,36 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
-    timestamp = models.DateField(auto_now_add=True)
+    timestamp = models.DateTimeField(editable=False)
+    view_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
     featured = models.BooleanField()
-    # slug = models.SlugField(
-    #     default='',
-    #     editable=False,
-    #     max_length=settings.BLOG_TITLE_MAX_LENGTH,
-    # )
+    slug = models.SlugField(
+        default='',
+        editable=False,
+        max_length=100,
+    )
+
+    def get_absolute_url(self):
+        kwargs = {
+            'pk': self.id,
+            'slug': self.slug
+        }
+        return reverse('post', kwargs=kwargs)
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.timestamp = timezone.now()
+        value = self.title
+        self.slug = slugify(value, allow_unicode=True)
+        return super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
-
-    # def get_absolute_url(self):
-    #     kwargs = {
-    #         'pk': self.id,
-    #         'slug': self.slug
-    #     }
-    #     return reverse('article-pk-slug-detail', kwargs=kwargs)
 
     # def save(self, *args, **kwargs):
     #     value = self.title

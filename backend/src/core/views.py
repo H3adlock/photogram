@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from .models import Post
+import time
 
 
 def home(request):
@@ -17,7 +18,7 @@ def home(request):
             featured_right.append(obj)
         count += 1
 
-    latest = Post.objects.all().order_by('timestamp')[::-1][0:3]
+    latest = Post.objects.all().order_by('-timestamp')[0:3]
     context = {
         'object_list': featured,
         'object_list_left': featured_left,
@@ -33,7 +34,7 @@ def post(request):
 
 def gallery(request):
     post_list = Post.objects.all()
-    latest = Post.objects.all().order_by('timestamp')[::-1][0:3]
+    latest = Post.objects.all().order_by('-timestamp')[0:3]
     paginator = Paginator(post_list, 6)
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
@@ -51,3 +52,11 @@ def gallery(request):
         'num_pages': range(1, paginator.num_pages + 1),
     }
     return render(request, 'gallery.html', context)
+
+
+def post(request, slug):
+    post_details = Post.objects.()
+    context = {
+        'post_details': post_details,
+    }
+    return render(request, "post.html", {})

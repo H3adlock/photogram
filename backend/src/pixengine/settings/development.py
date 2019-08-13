@@ -42,3 +42,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# if hasattr(time, 'tzset'):
+#     os.environ['TZ'] = TIME_ZONE
+#     time.tzset()

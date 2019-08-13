@@ -1,5 +1,6 @@
 import os
 from decouple import config
+import time
 
 BASE_DIR = os.path.dirname(
     os.path.dirname(
@@ -59,13 +60,13 @@ WSGI_APPLICATION = 'pixengine.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = config('TZ')
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
