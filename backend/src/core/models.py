@@ -3,6 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils.text import slugify
 from django.utils import timezone
+import uuid
 
 
 class Author(models.Model):
@@ -22,6 +23,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     overview = models.TextField()
     timestamp = models.DateTimeField(editable=False)
@@ -32,22 +34,18 @@ class Post(models.Model):
     categories = models.ManyToManyField(Category)
     featured = models.BooleanField()
     slug = models.SlugField(
-        default='',
-        editable=False,
-        max_length=100,
+        unique=True,
+        editable=False
     )
 
     def get_absolute_url(self):
-        kwargs = {
-            'pk': self.id,
+        return reverse('post-detail', kwargs={
             'slug': self.slug
-        }
-        return reverse('post', kwargs=kwargs)
+        })
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
-        if not self.id:
-            self.timestamp = timezone.now()
+        self.timestamp = timezone.now()
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         return super(Post, self).save(*args, **kwargs)

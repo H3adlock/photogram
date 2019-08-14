@@ -28,10 +28,6 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-def post(request):
-    return render(request, 'post.html', {})
-
-
 def gallery(request):
     post_list = Post.objects.all()
     latest = Post.objects.all().order_by('-timestamp')[0:3]
@@ -55,8 +51,4 @@ def gallery(request):
 
 
 def post(request, slug):
-    post_details = Post.objects.()
-    context = {
-        'post_details': post_details,
-    }
     return render(request, "post.html", {})
