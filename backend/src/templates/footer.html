@@ -40,7 +40,7 @@
             <div class="col-md-4">
                 <div class="latest-posts">
                     {% for obj in latest %}
-                    <a href="/post">
+                    <a href="{{ obj.get_absolute_url }}">
                         <div class="post d-flex align-items-center">
                             <div class="image"><img src="{{obj.thumbnail.url}}" alt="..." class="img-fluid"></div>
                             <div class="title"><strong>{{ obj.title }}</strong><span

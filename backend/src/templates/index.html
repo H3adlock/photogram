@@ -25,7 +25,7 @@
                 <p class="text-big">Welcome to <strong>SharpLens</strong> community and photoraphy blog. All contents
                     and
                     uploads are copyright free.
-                    Fell free to use them for personal or commercial use.</p>
+                    Feel free to use them for personal or commercial use.</p>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                                 <a href="#">{{ cat.title }}</a>
                                 {% endfor %}
                             </div>
-                            <a href="/post">
+                            <a href="{{ obj.get_absolute_url }}">
                                 <h2 class="h4">{{ obj.title }}</h2>
                             </a>
                         </header>
@@ -99,7 +99,7 @@
         <div class="row">
             {% for obj in latest %}
             <div class="post col-md-4">
-                <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}"><img src="{{ obj.thumbnail.url}}"
+                <div class="post-thumbnail"><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.thumbnail.url}}"
                             alt="..." class="img-fluid"></a>
                 </div>
                 <div class="post-details">
@@ -110,7 +110,7 @@
                             <a href="#">{{ cat.title }}</a>
                             {% endfor %}
                         </div>
-                    </div><a href="{{ post.get_absolute_url }}">
+                    </div><a href="{{ obj.get_absolute_url }}">
                         <h3 class="h4">{{ obj.title }}</h3>
                     </a>
                     <p class="text-muted">{{ obj.overview }}</p>

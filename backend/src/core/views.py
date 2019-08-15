@@ -1,7 +1,16 @@
+from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from .models import Post
 import time
+
+
+def get_category_count():
+    category_count = Post \
+        .objects \
+        .values('categories__title') \
+        .annotate(Count('categories__title'))
+    return category_count
 
 
 def home(request):
@@ -29,6 +38,7 @@ def home(request):
 
 
 def gallery(request):
+    category_count = get_category_count()
     post_list = Post.objects.all()
     latest = Post.objects.all().order_by('-timestamp')[0:3]
     paginator = Paginator(post_list, 6)
@@ -46,6 +56,7 @@ def gallery(request):
         'paginated_queryset': paginated_queryset,
         'page_request_var': page_request_var,
         'num_pages': range(1, paginator.num_pages + 1),
+        'category_count': category_count,
     }
     return render(request, 'gallery.html', context)
 
