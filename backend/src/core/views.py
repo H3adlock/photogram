@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from .models import Post
@@ -41,7 +41,18 @@ def gallery(request):
     category_count = get_category_count()
     post_list = Post.objects.all()
     latest = Post.objects.all().order_by('-timestamp')[0:3]
-    paginator = Paginator(post_list, 6)
+    search = request.GET.get('q')
+    if search:
+        post_list = post_list.filter(
+            Q(title__icontains=search) |
+            Q(overview__icontains=search)
+            # | Q(timestamp__icontains=search)
+            # | Q(author__user__icontains=search)
+            # | Q(categories__icontains=search)
+        ).distinct()
+        paginator = Paginator(post_list, 10)
+    else:
+        paginator = Paginator(post_list, 6)
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
     try:
@@ -51,7 +62,6 @@ def gallery(request):
     except EmptyPage:
         paginated_queryset = paginator.page(paginator.num_pages)
     context = {
-        'post_list': post_list,
         'latest': latest,
         'paginated_queryset': paginated_queryset,
         'page_request_var': page_request_var,
