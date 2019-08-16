@@ -1,6 +1,6 @@
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post
 import time
 
@@ -45,7 +45,8 @@ def gallery(request):
     if search:
         post_list = post_list.filter(
             Q(title__icontains=search) |
-            Q(overview__icontains=search)
+            Q(overview__icontains=search) |
+            Q(content__icontains=search)
             # | Q(timestamp__icontains=search)
             # | Q(author__user__icontains=search)
             # | Q(categories__icontains=search)
@@ -72,4 +73,8 @@ def gallery(request):
 
 
 def post(request, slug):
-    return render(request, "post.html", {})
+    post = get_object_or_404(Post, slug=slug)
+    context = {
+        'post': post
+    }
+    return render(request, "post.html", context)
