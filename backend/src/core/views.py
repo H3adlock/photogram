@@ -74,7 +74,12 @@ def gallery(request):
 
 def post(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    latest = Post.objects.all().order_by('-timestamp')[0:3]
+    category_count = get_category_count()
     context = {
-        'post': post
+        'post': post,
+        'latest': latest,
+        'category_count': category_count,
+        
     }
     return render(request, "post.html", context)
