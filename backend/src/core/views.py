@@ -1,6 +1,7 @@
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from .forms import CommentForm
 from .models import Post
 import time
 
@@ -39,7 +40,7 @@ def home(request):
 
 def gallery(request):
     category_count = get_category_count()
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().order_by('-timestamp')
     latest = Post.objects.all().order_by('-timestamp')[0:3]
     search = request.GET.get('q')
     if search:
@@ -74,12 +75,21 @@ def gallery(request):
 
 def post(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    form = CommentForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = post
+            form.save()
+            return redirect(reverse('post-detail', kwargs={
+                'slug': post.slug
+            }))
     latest = Post.objects.all().order_by('-timestamp')[0:3]
     category_count = get_category_count()
     context = {
+        'form': form,
         'post': post,
         'latest': latest,
         'category_count': category_count,
-        
     }
     return render(request, "post.html", context)

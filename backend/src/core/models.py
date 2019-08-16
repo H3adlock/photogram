@@ -55,7 +55,23 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # def save(self, *args, **kwargs):
-    #     value = self.title
-    #     self.slug = slugify(value, allow_unicode=True)
-    #     super().save(*args, **kwargs)
+    @property
+    def get_comments(self):
+        return self.comments.all().order_by('-timestamp')
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(editable=False)
+    content = models.TextField()
+    post = models.ForeignKey(
+        Post, related_name='comments', on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        self.timestamp = timezone.now()
+        return super(Comment, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.username
