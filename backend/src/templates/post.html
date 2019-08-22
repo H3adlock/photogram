@@ -23,7 +23,7 @@
                 <div class="title"><span>{{ post.author.user }}</span></div>
               </a>
               <div class="d-flex align-items-center flex-wrap">
-                <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince}}</div>
+                <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince}} ago</div>
                 <div class="views"><i class="icon-eye"></i> {{post.view_count}}</div>
                 <div class="comments meta-last"><i class="icon-comment"></i>{{post.comments.count}}</div>
               </div>
@@ -84,7 +84,7 @@
                       {% endif %}
                     </div>
                     <div class="title"><strong>{{ comment.user.username }}</strong><span
-                        class="date">{{comment.timestamp|timesince}}ago</span></div>
+                        class="date">{{comment.timestamp|timesince}} ago</span></div>
                   </div>
                 </div>
                 <div class="comment-body">
