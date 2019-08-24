@@ -38,7 +38,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pixengine.urls'
+ROOT_URLCONF = 'viewfinder.urls'
 
 TEMPLATES = [
     {
@@ -56,7 +56,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pixengine.wsgi.application'
+WSGI_APPLICATION = 'viewfinder.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 

@@ -13,14 +13,14 @@ class Command(BaseCommand):
 
         # logic to rename the project
 
-        files_to_rename = ['pixengine/settings/base.py', 'pixengine/wsgi.py', 'manage.py', 'core/management/commands/rename.py']
-        folder_to_rename = 'pixengine'
+        files_to_rename = ['viewfinder/settings/base.py', 'viewfinder/wsgi.py', 'manage.py', 'core/management/commands/rename.py']
+        folder_to_rename = 'viewfinder'
 
         for f in files_to_rename:
             with open(f, 'r') as file:
                 filedata = file.read()
 
-            filedata = filedata.replace('pixengine', new_project_name)
+            filedata = filedata.replace('viewfinder', new_project_name)
 
             with open(f, 'w') as file:
                 file.write(filedata)
