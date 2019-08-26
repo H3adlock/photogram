@@ -2,7 +2,7 @@ from .base import *
 import django_heroku
 
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['viewsfinder.herokuapp.com']
 
 # AUTH_PASSWORD_VALIDATORS = [
 #     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
