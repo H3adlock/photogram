@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'viewfinder.urls'
+ROOT_URLCONF = 'viewsfinder.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'viewfinder.wsgi.application'
+WSGI_APPLICATION = 'viewsfinder.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
