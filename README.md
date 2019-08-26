@@ -1,2 +1,2 @@
-# photogram
-Image blog
+# ViewFinder
+Photography blog
