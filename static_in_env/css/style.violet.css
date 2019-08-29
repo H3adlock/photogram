@@ -605,7 +605,7 @@ div[class*="-btn"] {
 }
 
 /*custom css addition start*/
-
+/* 
 .navbar.dropdown-menu {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 0;
@@ -668,16 +668,16 @@ div[class*="-btn"] {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
+} */
+/* 
 .navbar .navbar-toggle .icon-bar {
   background: #fff;
-}
-
+} */
+/* 
 .dropdown-menu {
   min-width: 180px;
   font-size: 11px;
-}
+} */
 
 /*custom css addition end*/
 

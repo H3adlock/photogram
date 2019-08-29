@@ -3,6 +3,7 @@
 {% url 'gallery' as gallery %}
 {% url 'account_login' as account_login %}
 {% url 'account_logout' as account_logout %}
+{% url 'account_profile' as account_profile %}
 <header class="header">
     <!-- Main Navbar-->
     <div class="page-loader">
@@ -45,10 +46,13 @@
                     <!-- <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
                     </li> -->
                     {% if user.is_authenticated %}
-                    <li class="nav nav-item dropdown"><a href="#"
+                    <li class="nav-item dropdown"><a href="#"
                             class="dropdown-toggle nav-link {% if request.path == request.path %}active {% endif %}"
                             data-toggle="dropdown">{{user.username}}</a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ account_profile }}"
+                                    class="nav-link {% if request.path == account_profile %}active {% endif %}">Profile</a>
+                            </li>
                             <li><a href="{{ account_logout }}"
                                     class="nav-link {% if request.path == account_logout %}active {% endif %}">Sign
                                     Out</a></li>
