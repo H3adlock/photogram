@@ -2722,3 +2722,61 @@ a.text-dark:focus, a.text-dark:hover {
     transform: rotate(360deg);
   }
 }
+/* login customized button */
+.btn,
+.well,
+.panel,
+.progress,
+.form-control,
+.form-control:hover,
+.form-control:focus,
+.navbar .dropdown-menu {
+  box-shadow: none;
+}
+.logbtn {
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  padding: 8px 37px;
+}
+
+.logbtn.active.focus,
+.logbtn.active:focus,
+.logbtn.focus,
+.logbtn:active.focus,
+.logbtn:active:focus,
+.logbtn:focus {
+  outline: 0;
+}
+
+.logbtn.logbtn-round {
+  border-radius: 2px;
+}
+
+.logbtn.logbtn-v {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.logbtn.logbtn-v:hover,
+.logbtn.logbtn-v:focus {
+  background: #9055A2;
+}
+
+
+
+/* Forms common style */
+.form-control {
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 2px;
+  font-size: 11px;
+  height: 33px;
+  border: 1px solid #EAEAEA;
+  border-radius: 2px;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.form-control:focus {
+  border-color: #CACACA;
+}

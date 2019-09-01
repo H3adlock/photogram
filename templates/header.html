@@ -4,6 +4,7 @@
 {% url 'account_login' as account_login %}
 {% url 'account_logout' as account_logout %}
 {% url 'account_profile' as account_profile %}
+{% url 'account_change_password' as account_change_password %}
 <header class="header">
     <!-- Main Navbar-->
     <div class="page-loader">
@@ -52,6 +53,10 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ account_profile }}"
                                     class="nav-link {% if request.path == account_profile %}active {% endif %}">Profile</a>
+                            </li>
+                            <li><a href="{{ account_change_password }}"
+                                    class="nav-link {% if request.path == account_change_password %}active {% endif %}">Change
+                                    Password</a>
                             </li>
                             <li><a href="{{ account_logout }}"
                                     class="nav-link {% if request.path == account_logout %}active {% endif %}">Sign

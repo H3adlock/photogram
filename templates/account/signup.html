@@ -5,17 +5,74 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<section class="module">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-sm-5 col-sm-offset-1 mb-sm-40"> -->
+      <div class="col-xl-6 ">
+        <h3>{% trans "Sign Up" %}</h3>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">Sign
+            In</a>.{% endblocktrans %}
+        </p>
+        <hr class="divider-w mb-10">
+        <!-- role="form" id="userSignupForm" -->
+        <form class="login" id="signup_form" action="{% url 'account_signup' %}" method="post">
+          {% csrf_token %}
+          {% if request.GET.next %}
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          {% endif %}
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% if form.non_field_errors %}
+          <div class="fieldWrapper alert alert-danger">
+            <ul class="alert-message">
+              {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+            <i class="icon-email"></i>
+            <input class="form-control login-field" type="text" id="id_email" name="email" placeholder="Email">
+            <span class="alert-danger">{{ form.email.errors }}</span>
+          </div>
+          <div class="form-group inner-addon left-addon {% if form.email.errors %}has-error{% endif %}">
+            <i class="icon-user"></i>
+            <input class="form-control login-field" type="text" id="id_username" name="username" placeholder="Username">
+            <span class=" alert-danger">{{ form.username.errors }}</span>
+          </div>
+          <div class="form-group inner-addon left-addon {% if form.password1.errors %}has-error{% endif %}">
+            <i class="icon-lock"></i>
+            <input class="form-control login-field" type="password" id="id_password1" name="password1"
+              placeholder="Password">
+            <span class="alert-danger">{{ form.password1.errors }}</span>
+          </div>
+
+          <div class="form-group inner-addon left-addon {% if form.password1.errors %}has-error{% endif %}">
+            <i class="icon-lock"></i>
+            <input class="form-control login-field" type="password" id="id_password2" name="password2"
+              placeholder="Confirm Password">
+            <span class="alert-danger">{{ form.password1.errors }}</span>
+          </div>
+          <hr class="divider-w mb-10">
+          <div class="form-group">
+            <div class="col-md-6">
+              <button type="submit" class="form-control logbtn logbtn-round logbtn-v">Sign Up</button>
+            </div>
+          </div>
+
+        </form>
+        <!-- <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
+</form> -->
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
