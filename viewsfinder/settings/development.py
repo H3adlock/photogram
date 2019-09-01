@@ -45,6 +45,8 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # if hasattr(time, 'tzset'):
 #     os.environ['TZ'] = TIME_ZONE
 #     time.tzset()
