@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
+{% url 'account_login' as account_login %}
 <div class="container">
   <div class="row">
     <!-- Latest Posts -->
@@ -48,9 +49,9 @@
                 </div>
                 <div class="icon next"><i class="fa fa-angle-right"> </i></div>
               </a></div> -->
-
-            {% if request.user.is_authenticated %}
             <div class="add-comment">
+              {% if request.user.is_authenticated %}
+
               <!-- <header>
                 <h3 class="h6">Leave a reply</h3>
               </header> -->
@@ -65,9 +66,14 @@
                   </div>
                 </div>
               </form>
+
+              {% else %}
+              <a href="{{ account_login }}">
+                <h3 class="h4">Sign In to leave comment</h3>
+              </a>
+              {% endif %}
             </div>
-            {% endif %}
-            <div class="post-comments">
+            <div class=" post-comments">
               <header>
                 <h3 class="h6">Comments<span class="no-of-comments">({{ post.comments.count }})</span></h3>
               </header>
