@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(
         os.path.dirname(
             os.path.abspath(__file__))))
 
-SECRET_KEY = config('SECRET_KEY')
+
 
 
 INSTALLED_APPS = [
@@ -61,7 +61,7 @@ WSGI_APPLICATION = 'viewsfinder.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = config('TZ')
+
 
 USE_I18N = True
 
