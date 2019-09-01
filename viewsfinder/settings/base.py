@@ -8,8 +8,6 @@ BASE_DIR = os.path.dirname(
             os.path.abspath(__file__))))
 
 
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -60,7 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'viewsfinder.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
-
 
 
 USE_I18N = True
