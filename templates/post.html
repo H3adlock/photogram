@@ -8,7 +8,8 @@
     <main class="post blog-post col-lg-8">
       <div class="container">
         <div class="post-single">
-          <div class="post-thumbnail"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></div>
+          <div class="post-thumbnail"><a href="{{post.thumbnail.url}}" data-fancybox="gallery" class="image"><img
+                src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
           <div class="post-details">
             <div class="post-meta d-flex justify-content-between">
               <div class="category">

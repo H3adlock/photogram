@@ -36,7 +36,9 @@
         <div class="row d-flex align-items-stretch">
             {% if obj in object_list_left %}
             <div class="image col-lg-5">
-                <img src="{{ obj.thumbnail.url }}" alt="...">
+                <a href="{{obj.get_absolute_url}}">
+                    <img src="{{ obj.thumbnail.url }}" alt="...">
+                </a>
             </div>
             {% endif %}
             <div class="text col-lg-7">
@@ -67,7 +69,11 @@
                 </div>
             </div>
             {% if obj in object_list_right %}
-            <div class="image col-lg-5"><img src="{{ obj.thumbnail.url }}" alt="..."></div>
+            <div class="image col-lg-5">
+                <a href="{{obj.get_absolute_url}}">
+                    <img src="{{ obj.thumbnail.url }}" alt="...">
+                </a>
+            </div>
             {% endif %}
         </div>
 
