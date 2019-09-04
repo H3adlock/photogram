@@ -824,8 +824,9 @@ section.featured-posts .image {
   padding: 0;
 }
 
-section.featured-posts .image img {
-  height: 100%;
+section.featured-posts .image.image img {
+  width: 100%;
+  height: auto !important;
 }
 
 section.featured-posts .post-header {
