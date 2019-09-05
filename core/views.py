@@ -52,7 +52,7 @@ def gallery(request):
             # | Q(author__user__icontains=search)
             # | Q(categories__icontains=search)
         ).distinct()
-        paginator = Paginator(post_list, 10)
+        paginator = Paginator(post_list, 1)
     else:
         paginator = Paginator(post_list, 6)
     page_request_var = 'page'
