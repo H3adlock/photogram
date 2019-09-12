@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .forms import CommentForm
 from .models import Post
 import time
+from django.conf import settings
 
 
 def get_category_count():
@@ -93,3 +94,7 @@ def post(request, slug):
         'category_count': category_count,
     }
     return render(request, "post.html", context)
+
+
+def profile(request, username):
+    post = get_object_or_404(Post, slug=slug)
