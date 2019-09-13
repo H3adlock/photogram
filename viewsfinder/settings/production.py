@@ -3,7 +3,7 @@ import django_heroku
 
 
 django_heroku.settings(locals())
-DEBUG = os.environ['DEBUG']
+DEBUG = os.environ.get('DEBUG', False)
 SECRET_KEY = os.environ['SECRET_KEY']
 TIME_ZONE = os.environ['TZ']
 ALLOWED_HOSTS = ['viewsfinder.herokuapp.com']
