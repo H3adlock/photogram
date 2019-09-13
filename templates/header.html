@@ -50,7 +50,12 @@
                     <li class="nav-item dropdown">
                         <a href="#"
                             class="dropdown-toggle nav-link {% if request.path == request.path %}active {% endif %}"
-                            data-toggle="dropdown">{{user.username}}
+                            data-toggle="dropdown">
+                            {% if user.first_name != '' %}
+                            {{user.first_name}} {{user.last_name}}
+                            {% else %}
+                            {{user.username}}
+                            {% endif %}
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ account_profile }}"
