@@ -47,9 +47,11 @@
                     <!-- <li class="nav-item"><a href="#" class="nav-link ">Contact</a>
                     </li> -->
                     {% if user.is_authenticated %}
-                    <li class="nav-item dropdown"><a href="#"
+                    <li class="nav-item dropdown">
+                        <a href="#"
                             class="dropdown-toggle nav-link {% if request.path == request.path %}active {% endif %}"
-                            data-toggle="dropdown">{{user.username}}</a>
+                            data-toggle="dropdown">{{user.username}}
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ account_profile }}"
                                     class="nav-link {% if request.path == account_profile %}active {% endif %}">Profile</a>
