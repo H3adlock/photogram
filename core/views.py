@@ -1,8 +1,9 @@
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .forms import CommentForm
-from .models import Post
+from .forms import CommentForm, ProfileForm
+from .models import Post, Profile
+from django.contrib.auth.decorators import login_required
 import time
 from django.conf import settings
 
@@ -96,5 +97,20 @@ def post(request, slug):
     return render(request, "post.html", context)
 
 
-def profile(request, username):
-    post = get_object_or_404(Post, slug=slug)
+@login_required
+def profile(request):
+    profile = Profile.objects.filter(user=request.user)
+    form = CommentForm()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.profile = profile
+            form.save()
+            return redirect(reverse('profile.html'))
+    context = {
+        'profile': profile,
+        'form': form
+
+    }
+
+    return render(request, "profile.html", context)

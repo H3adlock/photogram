@@ -1,6 +1,6 @@
 from django import forms
 from tinymce import TinyMCE
-from .models import Post, Comment
+from .models import Post, Comment, Profile
 
 
 class TinyMCEWidget(TinyMCE):
@@ -27,3 +27,11 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
+
+
+class ProfileForm(forms.ModelForm):
+    # bio = CharField(label='New label')
+
+    class Meta:
+        model = Profile
+        fields = '__all__'
