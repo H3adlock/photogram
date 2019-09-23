@@ -1,6 +1,8 @@
 from django import forms
 from tinymce import TinyMCE
 from .models import Post, Comment, Profile
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class TinyMCEWidget(TinyMCE):
@@ -30,8 +32,47 @@ class CommentForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    # bio = CharField(label='New label')
 
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = (
+            'bio',
+            'location',
+            'birth_date',
+            'profile_picture'
+        )
+
+
+class UserForm(forms.ModelForm):
+    # username = forms.CharField(attrs={"name": "username",
+    #                                                "id": "username",
+    #                                                      "placeholder": "username",
+    #                                                      "class": "form-control",
+    #                                                }, label='Username')
+
+    # email = forms.CharField(attrs={"name": "email",
+    #                                             "id": "email",
+    #                                                   "placeholder": "email",
+    #                                                   "class": "form-control",
+    #                                             }, label='Email')
+
+    # first_name = forms.CharField(attrs={"name": "first_name",
+    #                                                  "id": "first_name",
+    #                                                        "placeholder": "first name",
+    #                                                        "class": "form-control",
+    #                                                  }, label='First Name')
+
+    # last_name = forms.CharField(widget=Input(attrs={"name": "last_name",
+    #                                                 "id": "last_name",
+    #                                                       "placeholder": "last name",
+    #                                                       "class": "form-control",
+    #                                                 }), label='Last name')
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'first_name',
+            'last_name'
+        )

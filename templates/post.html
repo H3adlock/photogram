@@ -84,7 +84,7 @@
                 <div class="comment-header d-flex justify-content-between">
                   <div class="user d-flex align-items-center">
                     <div class="image">
-                      {% if comment.user.author %}
+                      {% if comment.user.profile.profile_picture %}
                       <img src="{{ comment.user.profile.profile_picture.url }}" alt="..."
                         class="img-fluid rounded-circle">
                       {% else %}
