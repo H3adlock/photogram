@@ -44,23 +44,24 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    # username = forms.CharField(attrs={"name": "username",
-    #                                                "id": "username",
-    #                                                      "placeholder": "username",
-    #                                                      "class": "form-control",
-    #                                                }, label='Username')
+    # username = forms.CharField(widget=forms.h(attrs={"name": "username",
+    #                                                         "id": "username",
+    #                                                         "placeholder": "username",
+    #                                                         "class": "form-control",
+    #                                                         "row": 1
+    #                                                         }), label='Username')
 
     # email = forms.CharField(attrs={"name": "email",
-    #                                             "id": "email",
-    #                                                   "placeholder": "email",
-    #                                                   "class": "form-control",
-    #                                             }, label='Email')
+    #                                "id": "email",
+    #                                "placeholder": "email",
+    #                                "class": "form-control",
+    #                                }, label='Email')
 
     # first_name = forms.CharField(attrs={"name": "first_name",
-    #                                                  "id": "first_name",
-    #                                                        "placeholder": "first name",
-    #                                                        "class": "form-control",
-    #                                                  }, label='First Name')
+    #                                     "id": "first_name",
+    #                                     "placeholder": "first name",
+    #                                     "class": "form-control",
+    #                                     }, label='First Name')
 
     # last_name = forms.CharField(widget=Input(attrs={"name": "last_name",
     #                                                 "id": "last_name",
