@@ -14,16 +14,17 @@
             <div class="text col-xl-6 ">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% for form in user_form %}
+                    {% for u_form in user_form %}
                     <div class="form-group">
-                        {{form}}
+                        {{u_form}}
+                    </div>
+                    {% endfor %}
+                    {% for p_form in profile_form %}
+                    <div class="form-group">
+                        {{p_form}}
                     </div>
                     {% endfor %}
 
-                    <table>
-                        {{ user_form.as_table }}
-                        {{ profile_form.as_table }}
-                    </table>
                     <hr class="divider-w mb-10">
                     <div class="form-group">
                         <div class="col-md-6">
