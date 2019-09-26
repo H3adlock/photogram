@@ -31,7 +31,15 @@ class CommentForm(forms.ModelForm):
         fields = ('content',)
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = Profile
@@ -41,33 +49,22 @@ class ProfileForm(forms.ModelForm):
             'birth_date',
             'profile_picture'
         )
+        widgets = {
+            'birth_date': DateInput(),
+        }
 
 
 class UserForm(forms.ModelForm):
-    # username = forms.CharField(widget=forms.h(attrs={"name": "username",
-    #                                                         "id": "username",
-    #                                                         "placeholder": "username",
-    #                                                         "class": "form-control",
-    #                                                         "row": 1
-    #                                                         }), label='Username')
-
-    # email = forms.CharField(attrs={"name": "email",
-    #                                "id": "email",
-    #                                "placeholder": "email",
-    #                                "class": "form-control",
-    #                                }, label='Email')
-
-    # first_name = forms.CharField(attrs={"name": "first_name",
-    #                                     "id": "first_name",
-    #                                     "placeholder": "first name",
-    #                                     "class": "form-control",
-    #                                     }, label='First Name')
-
     # last_name = forms.CharField(widget=Input(attrs={"name": "last_name",
     #                                                 "id": "last_name",
     #                                                       "placeholder": "last name",
     #                                                       "class": "form-control",
     #                                                 }), label='Last name')
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = User
