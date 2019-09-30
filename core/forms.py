@@ -21,6 +21,15 @@ class CustomClearableFileInput(forms.ClearableFileInput):
     template_name = 'widgets/customclearablefileinput.html'
 
 
+class CustomClearableFileInputTest(forms.ClearableFileInput):
+    template_with_initial = (
+        '%(initial_text)s: <a href="%(initial_url)s">%(initial)s</a> '
+        '%(clear_template)s<br />%(input_text)s: %(input)s'
+    )
+
+    template_with_clear = '%(clear)s <label for="%(clear_checkbox_id)s">%(clear_checkbox_label)s</label>'
+
+
 class PostForm(forms.ModelForm):
     content = forms.CharField(widget=TinyMCEWidget(
         attrs={'required': False, 'col': 30, 'rows': 10}))
@@ -47,13 +56,16 @@ class DateInput(forms.DateInput):
 
 
 class ProfileForm(forms.ModelForm):
-    profile_picture = forms.ImageField(widget=CustomClearableFileInput)
+    # profile_picture = forms.ImageField(widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             if visible.label != "Profile picture":
                 visible.field.widget.attrs['class'] = 'form-control'
+            else:
+                print(visible.field.widget.is_required)
+                # visible.field.widget.is_required = False
 
     class Meta:
         model = Profile
