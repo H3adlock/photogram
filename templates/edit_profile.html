@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+{% block content%}
+<section class="module">
+    <div class="container">
+        <h3>{% trans "Profile" %}</h3>
+        <hr class="divider-w mb-10">
+        <div class="row d-flex align-items-stretch">
+            {% if user.is_authenticated %}
+            <div class="text col-xl-6 ">
+                <form class='form-group' method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for u_form in user_form %}
+                    <div class="form-group">
+                        <label for={{u_form.label}} class="text-muted">{{u_form.label}}</label>
+                        {{u_form}}
+                    </div>
+                    {% endfor %}
+                    {% for p_form in profile_form %}
+                    <div class="form-group">
+                        <label for={{p_form.label}} class="text-muted">{{p_form.label}}</label>
+                        {{p_form}}
+                    </div>
+                    {% endfor %}
+
+                    <hr class="divider-w mb-10">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <button class="form-control logbtn logbtn-round logbtn-v"
+                                type="submit">{% trans "Save" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section> {% endblock content %}

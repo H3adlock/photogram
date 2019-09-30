@@ -1,8 +1,9 @@
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .forms import CommentForm
-from .models import Post
+from .forms import CommentForm, ProfileForm, UserForm
+from .models import Post, Profile
+from django.contrib.auth.decorators import login_required
 import time
 from django.conf import settings
 
@@ -96,5 +97,35 @@ def post(request, slug):
     return render(request, "post.html", context)
 
 
-def profile(request, username):
-    post = get_object_or_404(Post, slug=slug)
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST or None, instance=request.user)
+        profile_form = ProfileForm(
+            request.POST or None, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            profile_user_form = user_form.save()
+            custom_form = profile_form.save(False)
+            custom_form.user = profile_user_form
+            custom_form.save()
+            return redirect(reverse('account_profile'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+
+        }
+        return render(request, "edit_profile.html", context)
+
+
+@login_required
+def profile(request):
+    user_profile = Profile.objects.filter(user=request.user)[0]
+    context = {
+
+        'user_profile': user_profile
+
+    }
+    return render(request, "profile.html", context)
