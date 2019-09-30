@@ -21,7 +21,8 @@
             <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
             <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
                 class="author d-flex align-items-center flex-wrap">
-                <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                <div class="avatar"><img src="{{ post.author.user.profile.profile_picture.url }}" alt="..."
+                    class="img-fluid"></div>
                 <div class="title"><span>{{ post.author.user }}</span></div>
               </a>
               <div class="d-flex align-items-center flex-wrap">
@@ -83,8 +84,8 @@
                 <div class="comment-header d-flex justify-content-between">
                   <div class="user d-flex align-items-center">
                     <div class="image">
-                      {% if comment.user.author %}
-                      <img src="{{ comment.user.author.profile_picture.url }}" alt="..."
+                      {% if comment.user.profile.profile_picture %}
+                      <img src="{{ comment.user.profile.profile_picture.url }}" alt="..."
                         class="img-fluid rounded-circle">
                       {% else %}
                       <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
