@@ -1,0 +1,17 @@
+{% if widget.is_initial %}
+<br>
+<label class="text-muted">{{ widget.initial_text }}:</label>
+<div class="image col-sm-5">
+    <a href="{{ widget.value.url }}">
+        <img src="{{ widget.value.url}}" alt="..." class="img-fluid rounded-circle">
+    </a>
+</div>
+{% if not widget.required %}
+<input class="text-muted" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+<label class="text-muted" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+{% endif %}
+<br>
+<label class="text-muted">{{ widget.input_text }}:</label>
+{% endif %}
+<input class="text-muted" type="{{ widget.type }}" name="{{ widget.name }}"
+    {% include "django/forms/widgets/attrs.html" %}>

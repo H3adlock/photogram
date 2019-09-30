@@ -16,11 +16,13 @@
                     {% csrf_token %}
                     {% for u_form in user_form %}
                     <div class="form-group">
+                        <label for={{u_form.label}} class="text-muted">{{u_form.label}}</label>
                         {{u_form}}
                     </div>
                     {% endfor %}
                     {% for p_form in profile_form %}
                     <div class="form-group">
+                        <label for={{p_form.label}} class="text-muted">{{p_form.label}}</label>
                         {{p_form}}
                     </div>
                     {% endfor %}
