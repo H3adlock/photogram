@@ -1,6 +1,77 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
+{% block head_title %}{% trans "Profile" %}{% endblock %}
 {% block content%}
+<section class="module">
+    <div class="container">
+        <h3>{% trans "Profile" %}</h3>
+        <hr class="divider-w mb-10">
+        <div class="row d-flex align-items-stretch">
+            {% if user.is_authenticated %}
+            <div class="text col-xl-6 ">
+                <div class="form-group">
+                    <label for="username" class="text-muted">Username </label>
+                    <input class="form-control " id="username" name="username" value="{{ user_profile.user.username }}"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-muted">Email </label>
+                    <input class="form-control " id="email" name="email" value="{{ user_profile.user.email }}" disabled>
+                </div>
+                <hr class="divider-w mb-10">
+                <a class="button secondaryAction"
+                    href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a>
+                <hr class="divider-w mb-10">
+                <div class="form-group">
+                    <label for="firstname" class="text-muted">First Name </label>
+                    <input class="form-control" id="firstname" name="firstname"
+                        value="{{ user_profile.user.first_name }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="text-muted">Last Name </label>
+                    <input class="form-control " id="lastname" name="lastname" value="{{ user_profile.user.last_name }}"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="bio" class="text-muted">About </label>
+                    <textarea class="form-control " rows="6" id="bio" name="bio"
+                        style="text-align:left; overflow:auto; " disabled>{{ user_profile.bio }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="location" class="text-muted">Location </label>
+                    <input class="form-control " id="location" name="location" value="{{ user_profile.location }}"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="birth_date" class="text-muted">Birth Date</label>
+                    <input class="form-control login-field" id="birth_date" name="birth_date"
+                        value="{{ user_profile.birth_date }}" disabled>
+                </div>
+            </div>
+            <div class="image col-sm-5">
+                <form action="{% url 'edit_profile' %}">
+                    <div class="form-group">
+                        {% if user_profile.user.profile.profile_picture %}
+                        <img src="{{ user_profile.user.profile.profile_picture.url }}" alt="..."
+                            class="img-fluid rounded-circle">
+                        {% else %}
+                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="form-control logbtn logbtn-round logbtn-v"
+                                type="submit">{% trans "Edit Profile" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
 {% endblock content %}
