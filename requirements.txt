@@ -19,7 +19,7 @@ docutils==0.15.2
 et-xmlfile==1.0.1
 future==0.17.1
 gunicorn==19.9.0
-idna==2.8
+idna==3.7
 isort==4.3.21
 jdcal==1.4.1
 jmespath==0.9.4
